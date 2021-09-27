@@ -1,0 +1,64 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0,0,0,.0975);
+  height: 77px;
+}
+
+.core-sprite {
+  background-image: image-url("core-sprite-2x.png");
+  background-size: 405px 379px;
+  background-repeat: no-repeat;
+}
+
+.navbar-brand {
+  background-position: -176px 0px;
+  height: 35px;
+  width: 176px;
+}
+
+.hide-text {
+   display: block;
+   overflow: hidden;
+   text-indent: 110%;
+   white-space: nowrap;
+}
+
+.explore-icon {
+  background-position: -50px -355px;
+  height: 24px;
+  width: 24px;
+}
+
+.notification-icon {
+  background-position: -353px -298px;
+  height: 24px;
+  width: 24px;
+}
+
+.profile-icon {
+  background-position: -308px -176px;
+  height: 24px;
+  width: 24px;
+}
+
+.nav-item:not(:first-child) {
+  margin-left: 30px;
+}
+
+.box {
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 1px;
+  padding: 10px 0px;
+  margin: 0 0 10px;
+}
+
+.brand-name-img {
+  background-position: 0 0;
+  height: 51px;
+  width: 175px;
+}
