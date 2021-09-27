@@ -1,0 +1,14 @@
+<div class="row justify-content-md-center profile-wrapper">
+  <div class="col-md-4 text-center">
+    <%= image_tag 'default.png', width: '152', height: '152', alt: 'profile-picture', class: "round-image" %>
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+      <p class="name"><%= @user.name %></p>
+      <button class="btn btn-outline-dark common-btn edit-profile-pic">Edit Profile</button>
+    </div>
+    <div class="row">
+      <p class="email"><%= @user.email %></p>
+    </div>
+  </div>
+</div>
