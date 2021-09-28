@@ -13,4 +13,11 @@
  *= require_tree .
  *= require bootstrap.min
  *= require_self
+ *= require toastr
  */
+
+ body {
+  background-color: #fafafa;
+  font-size: 14px;
+  color: #262626;
+}
