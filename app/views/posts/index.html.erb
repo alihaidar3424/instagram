@@ -1,0 +1,15 @@
+<%= form_for @post, :html => {:multipart => true} do |f|%>
+  <%= f.label :content, class: 'control-label'%>
+  <%= f.text_field :content, class: 'text-field'%>
+  <%= f.file_field :images, multiple: true %>
+  <%= f.submit 'Submit', class: 'btn btn-default'%>
+<% end %>
+
+<% if @posts %>
+  <% @posts.each do |post|%>
+    <p><%= post.content %></p>
+    <% post.images.each do |image| %>
+      <%= image_tag image, width: '200px' %>
+    <% end %>
+  <% end %>
+<% end %>

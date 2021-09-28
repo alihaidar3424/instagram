@@ -10,4 +10,5 @@ class User < ApplicationRecord
   validates :bio, length: { maximum: 300 }
 
   has_one_attached :profile_pic
+  has_many :posts, dependent: :destroy
 end
