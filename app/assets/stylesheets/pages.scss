@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .navbar {
-  background-color: #fff;
-  border-bottom: 1px solid rgba(0,0,0,.0975);
+  background-color: $f-white;
+  border-bottom: 1px solid $solid-black;
   height: 77px;
 }
 
@@ -50,8 +50,8 @@
 }
 
 .box {
-  background-color: #fff;
-  border: 1px solid #e6e6e6;
+  background-color: $f-white;
+  border: 1px solid $solid-white;
   border-radius: 1px;
   padding: 10px 0px;
   margin: 0 0 10px;
