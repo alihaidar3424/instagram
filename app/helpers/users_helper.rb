@@ -2,7 +2,7 @@
 
 module UsersHelper
   def avatar_url(user)
-    return user.profile_pic if user.profile_pic
+    return user.profile_pic if user.profile_pic.attached?
 
     'default.png'
   end
