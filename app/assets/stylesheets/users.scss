@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$primary: #dbdbdb;
+$secondary: #262626;
+
 .profile-wrapper {
   padding: 60px 0;
   border-bottom: 1px solid #efefef;
@@ -26,7 +29,7 @@
   height: 28px;
   line-height: 24px;
   padding: 0 24px !important;
-  border-color: #dbdbdb;
+  border-color: $primary;
   font-size: 14px;
 }
 
@@ -47,3 +50,68 @@
     cursor: pointer;
   }
 }
+
+.edit-profile-wrapper {
+  margin: 60px 0 0;
+
+  .left-col {
+    border: 1px solid $primary;
+    padding: 0;
+    background-color: white;
+
+    .list-group-item {
+      border: none;
+      color: $secondary;
+      border-radius: 0;
+      font-size: 16px;
+      border-left: 2px solid transparent;
+    }
+
+    .list-group-item:first-child {
+      font-weight: bold;
+      border-left-color: $secondary;
+    }
+  }
+
+  .right-col {
+    border: 1px solid $primary;
+    border-left: none;
+    background-color: white;
+  }
+
+  .username-img {
+    margin: 32px 0;
+
+    .col-sm-9 {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+  }
+
+  .form-group {
+    font-size: 16px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
