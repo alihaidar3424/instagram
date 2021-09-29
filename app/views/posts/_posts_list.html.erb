@@ -8,14 +8,19 @@
         title: post.user.name do %>
         <strong><%= post.user.name %></strong>
       <% end %>
+      <% if post.belongs_to? current_user %>
+        <%= link_to post_path(post), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto" do %>
+          <i class="far fa-trash-alt" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
     </div>
 
     <%= render "photos", {post: post} %>
 
     <div class="card-body">
       <div class="row actions">
-        <a href="core-sprite love hide-text">Love</a>
-        <a href="core-sprite comments hide-text">Comments</a>
+        <a href="#" class="core-sprite love hide-text">Love</a>
+        <a href="#" class="core-sprite comment hide-text">Comments</a>
       </div>
       <div><strong><%= pluralize(16, "like") %></strong></div>
       <div>
