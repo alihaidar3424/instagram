@@ -1,5 +1,38 @@
 <% @posts.each do |post| %>
   <div class="card mt-3 post">
-    <div class="card-header"></div>
+    <div class="card-header d-flex align-items-center">
+      <%= link_to user_path(post.user), class: "no-text-decoration" do %>
+        <%= image_tag avatar_url(post.user), class: "post-author-icon" %>
+      <% end %>
+      <%= link_to user_path(post.user), class: "normal-color no-text-decoration",
+        title: post.user.name do %>
+        <strong><%= post.user.name %></strong>
+      <% end %>
+    </div>
+
+    <%= render "photos", {post: post} %>
+
+    <div class="card-body">
+      <div class="row actions">
+        <a href="core-sprite love hide-text">Love</a>
+        <a href="core-sprite comments hide-text">Comments</a>
+      </div>
+      <div><strong><%= pluralize(16, "like") %></strong></div>
+      <div>
+        <span><strong><%= post.user.name %></strong></span>
+        <span><%= post.content %></span>
+      </div>
+      <%= link_to time_ago_in_words(post.created_at).upcase + ' AGO', post_path(post),
+        class: 'light-color post-time no-text-decoration' %>
+      <hr>
+      <div class="row actions">
+        <form action="#" class="w-100">
+          <div>
+            <textarea rows="1" class="form-control comment-input border-0" placeholder="Add a comment ..."></textarea>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 <% end %>
+

@@ -14,7 +14,10 @@
 *= require bootstrap.min
 *= require_self
 *= require toastr
+*= require dropzone/dropzone
  */
+
+ @import "dropzone/dropzone";
 
  //variables
 

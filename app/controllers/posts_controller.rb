@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show]
 
   def index
-    @posts = Post.all.limit(10)
+    @posts = Post.all.order('created_at desc')
     @post = Post.new
   end
 
@@ -34,6 +34,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(images: [])
+    params.require(:post).permit(:content, images: [])
   end
 end

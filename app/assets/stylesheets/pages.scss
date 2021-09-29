@@ -17,11 +17,6 @@ $ef-white: #efefef;
   height: 77px;
 }
 
-.core-sprite {
-  background-image: image-url("core-sprite-2x.png");
-  background-size: 405px 379px;
-  background-repeat: no-repeat;
-}
 
 .navbar-brand {
   background-position: -176px 0px;
@@ -29,12 +24,6 @@ $ef-white: #efefef;
   width: 176px;
 }
 
-.hide-text {
-   display: block;
-   overflow: hidden;
-   text-indent: 110%;
-   white-space: nowrap;
-}
 
 .explore-icon {
   background-position: -50px -355px;
