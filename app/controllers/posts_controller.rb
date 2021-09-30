@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
   def create
     post = current_user.posts.build(post_params)
+    authorize post
     if post.images.size > 10
       flash[:alert] = "Post images can't be more than 10!"
     elsif post.save
@@ -24,14 +25,11 @@ class PostsController < ApplicationController
   def show; end
 
   def destroy
-    if @post.user == current_user
-      if @post.destroy
-        flash[:notice] = 'Post deleted!'
-      else
-        flash[:alert] = 'Something went wrong ...'
-      end
+    authorize @post
+    if @post.destroy
+      flash[:notice] = 'Post deleted!'
     else
-      flash[:alert] = "You don't have permission to do that!"
+      flash[:alert] = 'Something went wrong ...'
     end
     redirect_to root_path
   end

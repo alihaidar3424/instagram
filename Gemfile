@@ -42,10 +42,9 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'devise'
 gem 'dropzonejs-rails'
 gem 'jquery-rails'
+gem 'pundit'
 gem 'sprockets'
 gem 'toastr-rails'
-gem "pundit"
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
