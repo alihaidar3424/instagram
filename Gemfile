@@ -40,6 +40,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.0.0'
 # gem 'bootstrap-sass', '~> 3.4.1'
 gem 'devise'
+gem 'dropzonejs-rails'
 gem 'jquery-rails'
 gem 'sprockets'
 gem 'toastr-rails'

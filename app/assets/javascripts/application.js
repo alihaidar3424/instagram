@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require bootstrap.min
 //= require bootstrap-sprockets
+//= require dropzone
 //= require_tree .
 //= require toastr
 

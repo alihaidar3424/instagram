@@ -10,30 +10,16 @@ $f-white: #fff;
 $fa-white: #fafafa;
 $ef-white: #efefef;
 
-
 .navbar {
   background-color: $f-white;
   border-bottom: 1px solid $solid-black;
   height: 77px;
 }
 
-.core-sprite {
-  background-image: image-url("core-sprite-2x.png");
-  background-size: 405px 379px;
-  background-repeat: no-repeat;
-}
-
 .navbar-brand {
   background-position: -176px 0px;
   height: 35px;
   width: 176px;
-}
-
-.hide-text {
-   display: block;
-   overflow: hidden;
-   text-indent: 110%;
-   white-space: nowrap;
 }
 
 .explore-icon {
@@ -71,6 +57,3 @@ $ef-white: #efefef;
   height: 51px;
   width: 175px;
 }
-
-
-

@@ -14,10 +14,10 @@
 *= require bootstrap.min
 *= require_self
 *= require toastr
+*= require dropzone/dropzone
  */
 
  //variables
-
  $primary: #dbdbdb;
  $secondary: #262626;
  $solid-black: rgba(0,0,0,.0975);
@@ -32,4 +32,3 @@
   font-size: 14px;
   color: $secondary;
 }
-

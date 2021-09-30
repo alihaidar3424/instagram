@@ -1,0 +1,116 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$fa-white: #fafafa;
+$dd-white: #dddfe2;
+$secondary: #262626;
+
+
+.core-sprite {
+  background-image: image-url("core-sprite-2x.png");
+  background-size: 405px 379px;
+  background-repeat: no-repeat;
+}
+
+.hide-text {
+  display: block;
+  overflow: hidden;
+  text-indent: 110%;
+  white-space: nowrap;
+}
+
+.post-author-icon {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.no-text-decoration:hover {
+  text-decoration: none;
+  color: $secondary;
+}
+
+.normal-color {
+  color: $secondary;
+}
+
+// Customize post views
+.post {
+  .card-header {
+    background-color: white;
+  }
+
+  .card-body {
+    padding: 5px 16px 5px;
+  }
+
+  .actions {
+    margin: 12px 0;
+  }
+
+  .post-time {
+    margin-top: 5px;
+    font-size: 10px;
+  }
+
+  .comment-input {
+    font-size: 14px;
+    resize: none;
+  }
+
+  .previous-btn {
+    background-position: -281px -280px;
+    height: 30px;
+    opacity: 1;
+    width: 30px;
+  }
+
+  .next-btn {
+    background-position: -353px 0px;
+    height: 30px;
+    opacity: 1;
+    width: 30px;
+  }
+}
+
+.love {
+  background-position: -325px -329px;
+  height: 24px;
+  width: 24px;
+}
+
+.loved {
+  @extend .love;
+  background-position: -200px -330px;
+}
+
+.comment {
+  @extend .love;
+  background-position: -258px -175px;
+  margin-left: 8px;
+}
+
+.comment-list {
+  height: 310px;
+  overflow: auto;
+}
+
+.post-show-img {
+  background-color: $fa-white;
+  margin: -10px 0;
+}
+
+.delete-post-icon {
+  color: $secondary;
+  font-size: 20px;
+}
+
+.delete-comment {
+  width: 11px;
+  height: 11px;
+  background-position: -216px -112px;
+  float: right;
+  margin: 5px 0 0 10px;
+}
