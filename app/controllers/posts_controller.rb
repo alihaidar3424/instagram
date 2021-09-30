@@ -38,6 +38,27 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    return if @post.user == current_user
+
+    flash[:alert] = "You don't have permission to do that!"
+    redirect_to post_path(@post)
+  end
+
+  def update
+    post = Post.find_by id: params[:id]
+    if post.user == current_user
+      if post.update(post_params)
+        flash[:notice] = 'Post updated!'
+      else
+        flash[:alert] = 'Something went wrong ...'
+      end
+    else
+      flash[:alert] = "You don't have permission to do that!"
+    end
+    redirect_to post_path(post)
+  end
+
   private
 
   def set_post

@@ -107,6 +107,10 @@ $secondary: #262626;
   font-size: 20px;
 }
 
+.edit-post-icon{
+  @extend .delete-post-icon
+}
+
 .delete-comment {
   width: 11px;
   height: 11px;

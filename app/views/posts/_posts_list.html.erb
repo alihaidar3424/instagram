@@ -9,6 +9,9 @@
         <strong><%= post.user_name %></strong>
       <% end %>
       <% if post.belongs_to? current_user %>
+        <%= link_to edit_post_path(post), class: "ml-auto edit-post-icon mx-0 my-auto" do %>
+          <i class="far fa-edit" aria-hidden="true"></i>
+        <% end %>
         <%= link_to post_path(post), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto" do %>
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         <% end %>
