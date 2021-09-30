@@ -27,52 +27,6 @@ $secondary: #262626;
   margin-right: 10px;
 }
 
-// Customize upload photos form
-.upload-photos-icon:hover {
-  cursor: pointer;
-}
-
-.dz-preview.dz-image-preview {
-  margin: 2px;
-}
-
-.dz-image {
-  border-radius: 0px !important;
-
-  img {
-    width: 100%;
-  }
-}
-
-.dz-remove {
-  @extend .core-sprite;
-  @extend .hide-text;
-  position: absolute;
-  top: 9px;
-  right: 5px;
-  z-index: 20;
-  width: 18px;
-  height: 18px;
-  background-position: -386px -25px;
-  opacity: 0;
-  -webkit-transition: opacity 0.2s liner;
-  transition: opacity 0.2s liner;
-}
-
-.dropzone .dz-preview:hover .dz-remove {
-  opacity: 1;
-}
-
-.upload-photos-icon {
-  height: 120px;
-  width: 120px;
-  border: 2px dashed $dd-white;
-  border-radius: 2px;
-  padding: 48px;
-  display: inline-block;
-  margin: 2px;
-}
-
 .no-text-decoration:hover {
   text-decoration: none;
   color: $secondary;
@@ -80,10 +34,6 @@ $secondary: #262626;
 
 .normal-color {
   color: $secondary;
-}
-
-.fa-plus-clr {
-  color: $dd-white;
 }
 
 // Customize post views

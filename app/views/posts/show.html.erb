@@ -11,8 +11,8 @@
           <%= image_tag avatar_url(@post.user), class: "post-author-icon" %>
         <% end %>
         <%= link_to user_path(@post.user), class: "normal-color no-text-decoration d-flex align-self-center",
-          title: @post.user.name do %>
-          <strong><%= @post.user.name %></strong>
+          title: @post.user_name do %>
+          <strong><%= @post.user_name %></strong>
         <% end %>
         <% if @post.belongs_to? current_user %>
           <%= link_to post_path(@post), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto" do %>
@@ -24,7 +24,7 @@
       <div class="comment-list py-2">
         <% if @post.content.present? %>
           <div>
-            <span><strong><%= @post.user.name %></strong></span>
+            <span><strong><%= @post.user_name %></strong></span>
             <span><%= @post.content %></span>
           </div>
         <% end %>

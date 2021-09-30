@@ -10,8 +10,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    if @post.save
+    post = current_user.posts.build(post_params)
+    if post.images.size > 10
+      flash[:alert] = "Post images can't be more than 10!"
+    elsif post.save
       flash[:notice] = 'Saved...'
     else
       flash[:alert] = 'Something wrong...'
@@ -19,9 +21,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def show
-    @images = @post.images
-  end
+  def show; end
 
   def destroy
     if @post.user == current_user
