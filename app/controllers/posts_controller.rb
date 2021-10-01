@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[show destroy]
+  before_action :set_post, only: %i[show destroy edit update]
 
   def index
     @posts = Post.all.order('created_at desc')
@@ -36,6 +36,22 @@ class PostsController < ApplicationController
       flash[:alert] = 'Something went wrong ...'
     end
     redirect_to root_path
+  end
+
+  def edit
+    return @post if authorize @post
+
+    redirect_to post_path(@post)
+  end
+
+  def update
+    authorize @post
+    if @post.update(post_params)
+      flash[:notice] = 'Post updated!'
+    else
+      flash[:alert] = 'Something went wrong ...'
+    end
+    redirect_to post_path(@post)
   end
 
   private

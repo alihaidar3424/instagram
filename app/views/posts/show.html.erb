@@ -14,11 +14,16 @@
           title: @post.user_name do %>
           <strong><%= @post.user_name %></strong>
         <% end %>
-          <% if policy(@post).destroy? %>
-            <%= link_to post_path(@post), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto" do %>
-              <i class="far fa-trash-alt" aria-hidden="true"></i>
-            <% end %>
+        <% if policy(@post).edit? %>
+          <%= link_to edit_post_path(@post), class: "ml-auto edit-post-icon mx-0 my-auto" do %>
+            <i class="far fa-edit" aria-hidden="true"></i>
           <% end %>
+        <% end %>
+        <% if policy(@post).destroy? %>
+          <%= link_to post_path(@post), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto" do %>
+            <i class="far fa-trash-alt" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
       </div>
       <hr class="mb-0">
       <div class="comment-list py-2">

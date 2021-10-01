@@ -16,7 +16,15 @@ class PostPolicy < ApplicationPolicy
   end
 
   def destroy?
-    return true if user.present? && user == post.user
+    authorization?
+  end
+
+  def edit?
+    authorization?
+  end
+
+  def update?
+    authorization?
   end
 
   def show?
@@ -24,6 +32,10 @@ class PostPolicy < ApplicationPolicy
   end
 
   private
+
+  def authorization?
+    return true if user.present? && user == post.user
+  end
 
   def post
     record
