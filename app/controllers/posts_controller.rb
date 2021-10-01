@@ -2,11 +2,12 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_post, only: %i[show destroy]
+  before_action :set_post, only: %i[show destroy]
 
   def index
     @posts = Post.all.order('created_at desc')
     @post = Post.new
+    authorize @posts
   end
 
   def create
@@ -15,14 +16,19 @@ class PostsController < ApplicationController
     if post.images.size > 10
       flash[:alert] = "Post images can't be more than 10!"
     elsif post.save
-      flash[:notice] = 'Saved...'
+      flash[:notice] = 'Post Created!'
     else
       flash[:alert] = 'Something wrong...'
     end
     redirect_to posts_path
   end
 
-  def show; end
+  def show
+    return if @post
+
+    flash[:danger] = "Post doesn't exist!"
+    redirect_to root_path
+  end
 
   def destroy
     authorize @post
@@ -36,12 +42,8 @@ class PostsController < ApplicationController
 
   private
 
-  def find_post
+  def set_post
     @post = Post.find_by id: params[:id]
-    return if @post
-
-    flash[:danger] = "Post doesn't exist!"
-    redirect_to root_path
   end
 
   def post_params

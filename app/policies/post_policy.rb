@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class PostPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
+  end
+
   def index?
     true
   end
@@ -9,12 +15,12 @@ class PostPolicy < ApplicationPolicy
     user.present?
   end
 
-  def update?
+  def destroy?
     return true if user.present? && user == post.user
   end
 
-  def destroy?
-    return true if user.present? && user == post.user
+  def show?
+    true
   end
 
   private
