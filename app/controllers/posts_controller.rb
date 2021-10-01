@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[show destroy]
+  before_action :set_post, only: %i[show destroy edit update]
 
   def index
     @posts = Post.all.order('created_at desc')
@@ -39,24 +39,19 @@ class PostsController < ApplicationController
   end
 
   def edit
-    return if @post.user == current_user
+    return @post if authorize @post
 
-    flash[:alert] = "You don't have permission to do that!"
     redirect_to post_path(@post)
   end
 
   def update
-    post = Post.find_by id: params[:id]
-    if post.user == current_user
-      if post.update(post_params)
-        flash[:notice] = 'Post updated!'
-      else
-        flash[:alert] = 'Something went wrong ...'
-      end
+    authorize @post
+    if @post.update(post_params)
+      flash[:notice] = 'Post updated!'
     else
-      flash[:alert] = "You don't have permission to do that!"
+      flash[:alert] = 'Something went wrong ...'
     end
-    redirect_to post_path(post)
+    redirect_to post_path(@post)
   end
 
   private
