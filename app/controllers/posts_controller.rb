@@ -13,9 +13,7 @@ class PostsController < ApplicationController
   def create
     post = current_user.posts.build(post_params)
     authorize post
-    if post.images.size > 10
-      flash[:alert] = "Post images can't be more than 10!"
-    elsif post.save
+    if post.save
       flash[:notice] = 'Post Created!'
     else
       flash[:alert] = 'Something wrong...'
