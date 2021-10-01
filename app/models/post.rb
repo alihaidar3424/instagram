@@ -4,7 +4,10 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many_attached :images
 
-  validates :images, presence: true
+  validates :images, length: {
+    maximum: 10,
+    message: "You can't select more than 10 images!"
+  }
   delegate :name, to: :user, prefix: true
 
   def belongs_to?(user)

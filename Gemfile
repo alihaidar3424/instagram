@@ -42,6 +42,7 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'devise'
 gem 'dropzonejs-rails'
 gem 'jquery-rails'
+gem 'pundit'
 gem 'sprockets'
 gem 'toastr-rails'
 
