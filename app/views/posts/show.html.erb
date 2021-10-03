@@ -44,10 +44,13 @@
       <hr class="mt-0">
 
       <div class="row actions">
-        <a href="#" class="core-sprite love hide-text">Love</a>
-        <a href="#" class="core-sprite comment hide-text">Comments</a>
+        <div id="like-icon-post-<%= @post.id.to_s %>">
+          <%= render "like_icon", {liked: @liked, post: @post} %>
+        </div>
       </div>
-      <div class="strong"><%= pluralize(16, "like") %></div>
+      <div id="like-text-post-<%= @post.id.to_s %>">
+        <%= render "like_text", {likes: @post.likes} %>
+      </div>
       <%= link_to time_ago_in_words(@post.created_at).upcase + ' AGO', post_path(@post),
         class: 'light-color post-time no-text-decoration' %>
       <hr>
