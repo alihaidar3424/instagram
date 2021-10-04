@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  rescue_from ::ActiveRecord::RecordNotFound, with: :record_not_found
 
   include Pundit
 
@@ -11,7 +12,12 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:warning] = 'You are not authorized to perform this action.'
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to(request.referer || root_path)
+  end
+
+  def record_not_found
+    flash[:alert] = 'Record not found!'
     redirect_to(request.referer || root_path)
   end
 
