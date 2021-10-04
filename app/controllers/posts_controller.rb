@@ -20,15 +20,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def show
-    if @post
-      @liked = @post.liked?(current_user)
-      return
-    end
-
-    flash[:danger] = "Post doesn't exist!"
-    redirect_to root_path
-  end
+  def show; end
 
   def destroy
     authorize @post
