@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 class CommentsController < ApplicationController
   def index
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.includes(:user).order('created_at desc')
   end
 
   def create
@@ -15,7 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find_by id: params[:id]
+    @comment = Comment.find(params[:id])
     authorize @comment
     @post = @comment.post
     if @comment.destroy

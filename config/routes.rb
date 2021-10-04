@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :posts do
     resources :likes, only: %i[create destroy], shallow: true
+    resources :comments, only: %i[index create destroy], shallow: true
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show destroy edit update]
 
   def index
-    @posts = Post.all.includes(:likes).order('created_at desc')
+    @posts = Post.all.includes(:likes, :comments).order('created_at desc')
     @post = Post.new
     authorize @posts
   end
@@ -20,7 +20,9 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def show; end
+  def show
+    @comment = Comment.new
+  end
 
   def destroy
     authorize @post
