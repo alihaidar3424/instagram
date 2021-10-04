@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_post, only: %i[show destroy edit update]
 
   def index
-    @posts = Post.all.order('created_at desc')
+    @posts = Post.all.includes(:likes).order('created_at desc')
     @post = Post.new
     authorize @posts
   end
@@ -21,12 +20,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def show
-    return if @post
-
-    flash[:danger] = "Post doesn't exist!"
-    redirect_to root_path
-  end
+  def show; end
 
   def destroy
     authorize @post
@@ -35,7 +29,7 @@ class PostsController < ApplicationController
     else
       flash[:alert] = 'Something went wrong ...'
     end
-    redirect_to root_path
+    redirect_to posts_path
   end
 
   def edit
@@ -57,7 +51,7 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find_by id: params[:id]
+    @post = Post.find(params[:id])
   end
 
   def post_params

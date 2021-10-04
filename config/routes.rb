@@ -7,6 +7,8 @@ Rails.application.routes.draw do
              path_names: { sign_in: 'login', sign_out: 'logout', edit: 'profile', sign_up: 'registration' },
              controllers: { registrations: 'registrations' }
   resources :users, only: [:show]
-  resources :posts
+  resources :posts do
+    resources :likes, only: %i[create destroy], shallow: true
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

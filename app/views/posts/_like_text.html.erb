@@ -1,0 +1,10 @@
+<strong>
+  <% likes.each do |like| %>
+      <% if likes.size == 1 %>
+        <%= like.user.name %> like this post
+      <% else %>
+        <%= likes.size %> likes
+        <% break %>
+      <% end %>
+  <% end %>
+</strong>

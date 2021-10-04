@@ -24,10 +24,13 @@
 
     <div class="card-body">
       <div class="row actions">
-        <a href="#" class="core-sprite love hide-text">Love</a>
-        <a href="#" class="core-sprite comment hide-text">Comments</a>
+        <div id="like-icon-post-<%= post.id.to_s %>">
+          <%= render "like_icon", {liked: current_user.like_on_post(post), post: post} %>
+        </div>
       </div>
-      <div><strong><%= pluralize(16, "like") %></strong></div>
+      <div id="like-text-post-<%= post.id.to_s %>">
+        <%= render "like_text", {likes: post.likes} %>
+      </div>
       <div>
         <span><strong><%= post.user_name %></strong></span>
         <span><%= post.content %></span>
