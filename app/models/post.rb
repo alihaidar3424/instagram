@@ -13,6 +13,6 @@ class Post < ApplicationRecord
   delegate :profile_pic, to: :user, prefix: true
 
   def liked?(user)
-    Like.find_by(user_id: user.id, post_id: id)
+    Like.find_by!(user_id: user.id, post_id: id)
   end
 end
