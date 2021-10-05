@@ -20,10 +20,10 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
+    owner?
   end
 
   def update?
-    true
+    owner?
   end
 end

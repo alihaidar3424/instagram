@@ -108,13 +108,23 @@ $secondary: #262626;
 }
 
 .edit-post-icon{
+  float: right;
   @extend .delete-post-icon
 }
+
+.edit-comment {
+  width: 11px;
+  height: 11px;
+  float: right;
+  color: $secondary;
+  margin: 5px 0 0 30px;
+}
+
 
 .delete-comment {
   width: 11px;
   height: 11px;
-  background-position: -216px -112px;
+  color: $secondary;
   float: right;
   margin: 5px 0 0 10px;
 }
