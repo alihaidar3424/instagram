@@ -39,7 +39,7 @@ class ApplicationPolicy
   private
 
   def owner?
-    @user.present? && @user == @record.user
+    user.present? && user == record.user
   end
 
   class Scope
