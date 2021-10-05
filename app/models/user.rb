@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_one_attached :profile_pic
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def like_on_post(post)
     likes.where(post_id: post.id)

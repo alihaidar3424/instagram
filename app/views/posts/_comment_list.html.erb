@@ -1,0 +1,23 @@
+<% post.comments.each do |comment| %>
+  <div class="mb-2">
+    <% if policy(comment).destroy? %>
+      <%= link_to comment_path(comment),
+        method: :delete, remote: true, class: "delete-comment" do %>
+        <i class="far fa-trash-alt" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+    <% if policy(comment).edit? %>
+      <%= link_to edit_comment_path(comment), class: "edit-comment" do %>
+        <i class="far fa-edit" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+
+    <span>
+      <strong>
+        <%= link_to comment.user_name, user_path(comment.user),
+          class: "no-text-decoration normal-color" %>
+      </strong>
+    </span>
+    <span><%= comment.content %></span>
+  </div>
+<% end %>
