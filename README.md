@@ -5,20 +5,24 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Github Link: https://github.com/alihaidar-devsinc/instagram
 
-* System dependencies
+* Description: This is a instagram clone project, where users can create account and add post and stories. User can   follow each other and it has comment and like functionality.
 
-* Configuration
+* Prerequisite
 
-* Database creation
+  - Ruby version - 2.7.2
 
-* Database initialization
+  - Rails version - 5.2.6
 
-* How to run the test suite
+  - Database - Postgres : 13.4
 
-* Services (job queues, cache servers, search engines, etc.)
+* Local Setup
 
-* Deployment instructions
+  - Dependencies Installation - bundle install
 
-* ...
+  - Database creation - rails db:setup
+
+  - Database initialization - rails db:migrate
+
+  - How to run the app - rails s
