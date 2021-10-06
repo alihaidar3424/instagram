@@ -9,6 +9,18 @@
       <% if @user == current_user %>
         <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-outline-dark common-btn edit-profile-btn"%>
         <button type="button" class="core-sprite setting" data-toggle="modal" data-target="#exampleModal"></button>
+      <% else %>
+        <% if @followed %>
+          <%= form_tag unfollow_users_path, method: :post, remote: true, class:'float-end' do %>
+            <%= hidden_field_tag :follow_id, @user.id %>
+            <%= submit_tag 'Unfollow', class:'edit-follow-btn btn btn-primary'%>
+          <% end %>
+        <% else %>
+          <%= form_tag follow_users_path, method: :post, remote: true, class:'float-end' do %>
+            <%= hidden_field_tag :follow_id, @user.id %>
+            <%= submit_tag 'Follow', class:'edit-follow-btn btn btn-primary'%>
+          <% end %>
+        <% end %>
       <% end %>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -29,6 +41,12 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <li><span><%= @user.posts.count %></span> posts</li>
+      <li><span><%= @user.followers.count %></span> followers</li>
+      <li><span><%= @user.following.count %></span> following</li>
+    </div>
+    <br>
     <div class="row">
       <p class="email"><%= @user.email %></p>
     </div>
