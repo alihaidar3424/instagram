@@ -12,4 +12,6 @@ class Post < ApplicationRecord
   }
   delegate :name, to: :user, prefix: true
   delegate :profile_pic, to: :user, prefix: true
+
+  scope :of_followed_user, ->(user) { where user_id: user.following_relationships.followed.pluck('following_id') }
 end

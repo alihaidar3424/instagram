@@ -20,7 +20,11 @@ class User < ApplicationRecord
   has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_relationships, source: :following
 
+  enum account_type: { general: 0, secure: 1 }
+
   def like_on_post(post)
     likes.where(post_id: post.id)
   end
+
+  scope :pending_users, ->(user) { where id: user.follower_relationships.pending.pluck('follower_id') }
 end

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show destroy edit update]
 
   def index
-    @posts = Post.all.includes(:likes, :comments).order('created_at desc')
+    @posts = Post.of_followed_user(current_user).includes(:likes, :comments).order('created_at desc')
     @post = Post.new
     authorize @posts
   end
