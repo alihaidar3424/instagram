@@ -9,6 +9,9 @@ $solid-white: #e6e6e6;
 $f-white: #fff;
 $fa-white: #fafafa;
 $ef-white: #efefef;
+$ddd-white: #ddd;
+$gray-99: #999;
+$rgb-black: rgba(0,0,0,.3);
 
 .profile-wrapper {
   padding: 60px 0;
@@ -110,5 +113,50 @@ $ef-white: #efefef;
 
   .form-group {
     font-size: 16px;
+  }
+}
+
+.profile-tab {
+  margin-top: 60px;
+
+  .nav-tabs {
+    border: 0;
+    border-top: 1px solid $ddd-white;
+
+    .nav-item {
+      border-radius: 0;
+      border: 0;
+      border-top: 1px solid transparent;
+      margin-top: -1px;
+      padding: 10px 0;
+      background: transparent;
+      font-weight: bold;
+      color: $gray-99;
+    }
+
+    .nav-item.active {
+      color: $secondary;
+      border-top: 1px solid $secondary;
+    }
+  }
+
+  .post-stat {
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    top: 0;
+    opacity: 0;
+  }
+
+  .col-4:hover .post-stat {
+    background-color: $rgb-black;
+    opacity: 1;
+  }
+
+  .image-preview {
+    margin-bottom: 30px;
   }
 }
