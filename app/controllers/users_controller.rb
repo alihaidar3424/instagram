@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     if current_user.following_relationships.find_by(following_id: @user.id)
       @status = current_user.following_relationships.find_by!(following_id: @user.id).follow_status
     end
+    @posts = @user.posts.includes(:likes, :comments)
   end
 
   def requests_pending
