@@ -7,7 +7,7 @@ Rails.application.routes.draw do
              path_names: { sign_in: 'login', sign_out: 'logout', edit: 'profile', sign_up: 'registration' },
              controllers: { registrations: 'registrations' }
 
-  resources :users, only: [:show] do
+  resources :users, only: %i[show index] do
     post :follow, to: 'followerships#create', on: :collection
     post :unfollow, to: 'followerships#destroy', on: :collection
     post :accept_request, to: 'followerships#update', on: :collection

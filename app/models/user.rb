@@ -27,4 +27,8 @@ class User < ApplicationRecord
   end
 
   scope :pending_users, ->(user) { where id: user.follower_relationships.pending.pluck('follower_id') }
+
+  def self.search(term)
+    where('name LIKE ?', "%#{term}%") if term
+  end
 end
