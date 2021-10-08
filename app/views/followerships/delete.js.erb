@@ -1,0 +1,2 @@
+$('#follow-user-<%= @user.id.to_s %>').
+  html('<%= j render "users/follows", {user: @user, status: @status} %>');

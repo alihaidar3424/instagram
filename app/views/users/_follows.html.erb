@@ -1,0 +1,19 @@
+<!--<div id="follow-user-<%= user.id.to_s %>">-->
+  <% if status == 'followed' %>
+    <%= form_tag unfollow_users_path, method: :post, remote: true, class:'float-end' do %>
+      <%= hidden_field_tag :follow_id, user.id %>
+      <%= submit_tag 'Unfollow', class:'edit-follow-btn btn btn-primary'%>
+    <% end %>
+  <% elsif status == 'pending' %>
+    <%= form_tag unfollow_users_path, method: :post, remote: true, class:'float-end' do %>
+      <%= hidden_field_tag :follow_id, user.id %>
+      <%= submit_tag 'Cancel Request', class:'edit-follow-btn btn btn-primary'%>
+    <% end %>
+    <button type="button" class="edit-follow-btn btn btn-secondary" disabled>Request Pending</button>
+  <% else %>
+    <%= form_tag follow_users_path, method: :post, remote: true, class:'float-end' do %>
+      <%= hidden_field_tag :follow_id, user.id %>
+      <%= submit_tag 'Follow', class:'edit-follow-btn btn btn-primary'%>
+    <% end %>
+  <% end %>
+<!--</div>-->
