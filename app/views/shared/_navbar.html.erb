@@ -4,16 +4,17 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="form-inline my-2 my-lg-0 ml-md-auto">
-        <input class="form-control mr-sm-2 text-center" type="search" placeholder="Search" aria-label="Search">
-      </form>
+      <%= form_tag users_path, method: :get, class: "form-inline my-2 my-lg-0 ml-md-auto", id: "users-search",
+        remote: true do %>
+        <%= text_field_tag :term, params[:term], class: "form-control mr-sm-2 text-center common-btn",
+          placeholder: "Search", autocomplete: "off" %>
+        <div id="users-result"></div>
+      <% end %>
       <ul class="navbar-nav ml-md-auto">
         <li class="nav-item active">
-          <%= link_to '', user_requests_pending_path(current_user), class: "nav-link core-sprite explore-icon hide-text" %>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link core-sprite notification-icon hide-text" href="#"> <span class="sr-only">(current)</span></a>
+          <%= link_to '', user_requests_pending_path(current_user), class: "nav-link core-sprite notification-icon hide-text" %>
         </li>
         <li class="nav-item active">
           <%= link_to '', user_path(current_user), class: 'nav-link core-sprite profile-icon hide-text' %>
