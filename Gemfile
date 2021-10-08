@@ -43,6 +43,8 @@ gem 'devise'
 gem 'dropzonejs-rails'
 gem 'jquery-rails'
 gem 'pundit'
+gem 'sidekiq'
+gem 'sidekiq-cron'
 gem 'sprockets'
 gem 'toastr-rails'
 

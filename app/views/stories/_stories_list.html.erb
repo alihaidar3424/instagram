@@ -1,0 +1,21 @@
+<% @stories.each do |story| %>
+  <div class="card mt-3 post">
+    <div class="card-header d-flex align-items-center">
+      <%= link_to user_path(story.user), class: "no-text-decoration" do %>
+        <%= image_tag avatar_url(story.user), class: "post-author-icon" %>
+      <% end %>
+      <%= link_to user_path(story.user), class: "normal-color no-text-dechforation",
+        title: story.user_name do %>
+        <strong><%= story.user_name %></strong>
+      <% end %>
+      <% if policy(story).destroy? %>
+        <%= link_to story_path(story), method: :delete, class: "ml-auto delete-post-icon mx-0 my-auto" do %>
+          <i class="far fa-trash-alt" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= render 'photos', {story: story} %>
+  </div>
+<% end %>
+

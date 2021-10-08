@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :likes, only: %i[create destroy], shallow: true
     resources :comments, except: %i[new show], shallow: true
-    # resources :followership, only: %i[create destroy], shallow: true
   end
+
+  resources :stories, only: %i[index create destroy show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
