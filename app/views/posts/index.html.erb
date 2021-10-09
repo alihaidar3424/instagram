@@ -15,7 +15,7 @@
                 placeholder: "Say something about this ..." %>
             </div>
           </div>
-            <%= f.file_field :images, multiple: true %>
+            <%= f.file_field :images, multiple: true, direct_upload: true %>
           <%= f.submit "Post", class: "btn btn-primary" %>
         <% end %>
       </div>

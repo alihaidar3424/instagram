@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: alihaidar-devsinc
+  api_key: '958232315514486'
+  api_secret: YcU7bATbEAhZe95RXiaesOeWe6k
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: alihaidar-devsinc
+  api_key: '958232315514486'
+  api_secret: YcU7bATbEAhZe95RXiaesOeWe6k
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: alihaidar-devsinc
+  api_key: '958232315514486'
+  api_secret: YcU7bATbEAhZe95RXiaesOeWe6k
+  enhance_image_tag: true
+  static_file_support: false
