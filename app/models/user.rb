@@ -28,8 +28,10 @@ class User < ApplicationRecord
   end
 
   scope :pending_users, ->(user) { where id: user.follower_relationships.pending.pluck('follower_id') }
-
-  def self.search(term)
-    where('name LIKE ?', "%#{term}%") if term
-  end
+  scope :followed_users, ->(user) { where id: user.follower_relationships.followed.pluck('follower_id') }
+  scope :following_users, lambda { |user1, user2|
+                            where id: user1.following_relationships.followed
+                                           .pluck('following_id').include?(user2.id)
+                          }
+  scope :search, ->(term) { where('name LIKE ?', "%#{term}%") if term }
 end
