@@ -11,7 +11,7 @@
               <%= image_tag avatar_url(current_user), class: "post-author-icon" %>
             </div>
           </div>
-            <%= f.file_field :images, multiple: true %>
+            <%= f.file_field :images, multiple: true, direct_upload: true %>
           <%= f.submit "Publish Story", class: "btn btn-primary" %>
         <% end %>
       </div>

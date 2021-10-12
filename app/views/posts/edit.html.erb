@@ -14,7 +14,7 @@
               <%= f.text_field :content, class: "form-control border-0", autofocus: true, autocomplete: 'content' %>
             </div>
           </div>
-            <%= f.file_field :images, multiple: true %>
+            <%= f.file_field :images, multiple: true, direct_upload: true %>
           <%= f.submit "Update", class: "btn btn-primary" %>
         <% end %>
       </div>
