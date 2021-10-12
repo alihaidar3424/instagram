@@ -11,8 +11,8 @@ ActionMailer::Base.perform_deliveries = :smtp
 ActionMailer::Base.smtp_settings = {
   address: 'smtp.gmail.com',
   port: 465,
-  user_name: 'ali.haidar@devsinc.com',
-  password: 'fyxfkkwzxofpfqnz',
+  user_name: ENV['EMAIL_USER_NAME'],
+  password: ENV['EMAIL_PASSWORD'],
   authentication: 'plain',
   ssl: true,
   tsl: true,
