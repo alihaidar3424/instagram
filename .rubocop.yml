@@ -28,9 +28,14 @@ Metrics/BlockLength:
     - config/**/*
     - spec/**/*
 
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'
+
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - spec/**/*
 
 Style/Documentation:
   Enabled: false
+
