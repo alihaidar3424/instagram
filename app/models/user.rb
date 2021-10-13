@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: { in: 3..50 }
   validates :bio, length: { maximum: 300 }
@@ -15,10 +15,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :stories, dependent: :destroy
 
-  has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
+  has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow',
+                                    dependent: :nullify
   has_many :followers, through: :follower_relationships, source: :follower
 
-  has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
+  has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow',
+                                     dependent: :nullify
   has_many :following, through: :following_relationships, source: :following
 
   enum account_type: { general: 0, secure: 1 }
