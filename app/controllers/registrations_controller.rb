@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class RegistrationsController < Devise::RegistrationsController
-
   def create
     super
     UserMailer.confirmation(resource).deliver unless resource.invalid?
