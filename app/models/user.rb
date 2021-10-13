@@ -35,5 +35,5 @@ class User < ApplicationRecord
                             where id: user1.following_relationships.followed
                                            .pluck('following_id').include?(user2.id)
                           }
-  scope :search, ->(term) { where('name LIKE ?', "%#{term}%") if term }
+  scope :search, ->(term) { where('lower(name) LIKE ?', "%#{term.downcase}%") if term }
 end
