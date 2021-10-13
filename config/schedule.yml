@@ -1,5 +1,5 @@
 
-my_first_job:
+delete_story:
    cron: '*/1 * * * *'
-   class: 'WorkerName'
+   class: 'DeleteStory'
    queue: 'default'
