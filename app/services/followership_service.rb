@@ -10,7 +10,7 @@ class FollowershipService < ApplicationService
 
   def call
     follow = Follow.new(follower_id: current_user.id, following_id: user.id)
-    follow.follow_status = :pending if user.account_type == 'secure'
+    follow.follow_status = :pending if user.secure?
     follow
   end
 end

@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: { in: 3..50 }
-  validates :bio, length: { maximum: 300 }
+  validates :bio, length: { maximum: 255 }
 
   has_one_attached :profile_pic
   has_many :posts, dependent: :destroy
@@ -25,10 +25,6 @@ class User < ApplicationRecord
 
   enum account_type: { general: 0, secure: 1 }
 
-  def like_on_post(post)
-    likes.where(post_id: post.id)
-  end
-
   scope :pending_users, ->(user) { where id: user.follower_relationships.pending.pluck('follower_id') }
   scope :followed_users, ->(user) { where id: user.follower_relationships.followed.pluck('follower_id') }
   scope :following_users, lambda { |user1, user2|
@@ -36,4 +32,8 @@ class User < ApplicationRecord
                                            .pluck('following_id').include?(user2.id)
                           }
   scope :search, ->(term) { where('lower(name) LIKE ?', "%#{term.downcase}%") if term }
+
+  def like_on_post(post)
+    likes.where(post_id: post.id)
+  end
 end

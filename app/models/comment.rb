@@ -6,5 +6,5 @@ class Comment < ApplicationRecord
 
   delegate :name, to: :user, prefix: true
 
-  validates :content, presence: true
+  validates :content, presence: true, length: { maximum: 255 }
 end

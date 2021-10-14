@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Story < ApplicationRecord
+  include Scopeable
   belongs_to :user
   has_many_attached :images
 
@@ -10,9 +11,4 @@ class Story < ApplicationRecord
   }
 
   delegate :name, to: :user, prefix: true
-
-  scope :of_current_and_followed_user, lambda { |user|
-                                         where user_id: [user, *user.following_relationships
-                                                                    .followed.pluck('following_id')]
-                                       }
 end

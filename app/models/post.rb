@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  include Scopeable
   belongs_to :user
   has_many_attached :images
   has_many :likes, dependent: :destroy
@@ -10,11 +11,9 @@ class Post < ApplicationRecord
     maximum: 10,
     message: "You can't select more than 10 images!"
   }
+
+  validates :content, length: { maximum: 255 }
+
   delegate :name, to: :user, prefix: true
   delegate :profile_pic, to: :user, prefix: true
-
-  scope :of_current_and_followed_user, lambda { |user|
-                                         where user_id: [user, *user.following_relationships
-                                                                    .followed.pluck('following_id')]
-                                       }
 end

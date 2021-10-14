@@ -8,6 +8,8 @@ AllCops:
   # Exclude auto-generated files by Rails
   TargetRubyVersion: 2.7
   TargetRailsVersion: 5.2
+  NewCops: enable
+
   Exclude:
     - 'db/schema.rb'
     - 'node_modules/**/*'
