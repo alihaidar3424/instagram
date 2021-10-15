@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show destroy edit update]
-  before_action :authorization, only: %i[show destroy update]
+  before_action :authorize_post, only: %i[show destroy update]
 
   def index
     @posts = Post.of_current_and_followed_user(current_user).includes(:likes, :comments).order('created_at desc')
@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     if post.save
       flash[:notice] = 'Post Created!'
     else
-      flash[:alert] = post.errors.full_messages
+      flash[:alert] = post.errors.full_messages.join(', ')
     end
     redirect_to posts_path
   end
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     if @post.destroy
       flash[:notice] = 'Post deleted!'
     else
-      flash[:alert] = @post.errors.full_messages
+      flash[:alert] = @post.errors.full_messages(', ')
     end
     redirect_to posts_path
   end
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       flash[:notice] = 'Post updated!'
     else
-      flash[:alert] = @post.errors.full_messages
+      flash[:alert] = @post.errors.full_messages(', ')
     end
     redirect_to post_path(@post)
   end
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def authorization
+  def authorize_post
     authorize @post
   end
 

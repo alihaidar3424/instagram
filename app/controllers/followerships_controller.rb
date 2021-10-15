@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 class FollowershipsController < ApplicationController
-  before_action :set_follow, only: %i[update reject]
+  before_action :set_following, only: %i[update reject]
   before_action :set_follow_status, only: :create
+  before_action :set_follower, only: :destroy
 
   def create
     if @follow.save
       flash[:notice] = 'Follow User'
     else
-      flash[:alert] = follow.errors.full_messages
+      flash[:alert] = follow.errors.full_messages.join(', ')
     end
     redirect_to(request.referer || root_path)
   end
 
   def destroy
-    follow = Follow.find_by!(follower_id: current_user.id, following_id: params[:follow_id])
-    if follow.destroy
+    if @follow.destroy
       flash[:notice] = 'Unfollow User'
     else
-      flash[:alert] = @follow.errors.full_messages
+      flash[:alert] = @follow.errors.full_messages.join(', ')
     end
     redirect_to(request.referer || root_path)
   end
@@ -36,15 +36,19 @@ class FollowershipsController < ApplicationController
     flash[:alert] = if @follow.destroy
                       'Follow Request Rejected'
                     else
-                      @follow.errors.full_messages
+                      @follow.errors.full_messages(', ')
                     end
     redirect_to(request.referer || root_path)
   end
 
   private
 
-  def set_follow
+  def set_following
     @follow = Follow.find_by!(follower_id: params[:follow_id], following_id: current_user.id)
+  end
+
+  def set_follower
+    @follow = Follow.find_by!(follower_id: current_user.id, following_id: params[:follow_id])
   end
 
   def set_follow_status

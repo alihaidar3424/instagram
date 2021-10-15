@@ -2,26 +2,25 @@
 
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[edit destroy update]
-  before_action :authorization, only: %i[edit destroy update]
+  before_action :authorize_comment, only: %i[edit destroy update]
+  before_action :create_comment, only: :create
+  before_action :set_post, only: %i[create destroy]
 
   def create
-    comment = current_user.comments.build(comment_params)
-    @post = comment.post
     authorize @post, policy_class: CommentPolicy
-    if comment.save
+    if @comment.save
       respond_to :js
     else
-      flash[:alert] = comment.errors.full_messages
+      flash[:alert] = comment.errors.full_messages.join(', ')
       redirect_to(request.referer || root_path)
     end
   end
 
   def destroy
-    @post = @comment.post
     if @comment.destroy
       respond_to :js
     else
-      flash[:alert] = @comment.errors.full_messages
+      flash[:alert] = @comment.errors.full_messages.join(', ')
       redirect_to(request.referer || root_path)
     end
   end
@@ -32,7 +31,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       flash[:notice] = 'Comment updated!'
     else
-      flash[:alert] = @comment.errors.full_messages
+      flash[:alert] = @comment.errors.full_messages.join(', ')
     end
     redirect_to post_path(@comment.post)
   end
@@ -43,8 +42,16 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
-  def authorization
+  def authorize_comment
     authorize @comment
+  end
+
+  def create_comment
+    @comment = current_user.comments.build(comment_params)
+  end
+
+  def set_post
+    @post = @comment.post
   end
 
   def comment_params

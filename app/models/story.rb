@@ -10,5 +10,7 @@ class Story < ApplicationRecord
     message: "You can't select more than 10 images!"
   }
 
+  validates :content, length: { maximum: 255 }
+
   delegate :name, to: :user, prefix: true
 end

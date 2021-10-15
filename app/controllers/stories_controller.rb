@@ -14,7 +14,7 @@ class StoriesController < ApplicationController
     if story.save
       flash[:notice] = 'Story Created!'
     else
-      flash[:alert] = story.errors.full_messages
+      flash[:alert] = story.errors.full_messages.join(', ')
     end
     redirect_to stories_path
   end
@@ -23,7 +23,7 @@ class StoriesController < ApplicationController
     if @story.destroy
       flash[:notice] = 'Story deleted!'
     else
-      flash[:alert] = @story.errors.full_messages
+      flash[:alert] = @story.errors.full_messages.join(', ')
     end
     redirect_to stories_path
   end
@@ -41,6 +41,6 @@ class StoriesController < ApplicationController
   end
 
   def story_params
-    params.require(:story).permit(images: [])
+    params.require(:story).permit(:content, images: [])
   end
 end
