@@ -2,7 +2,7 @@
 
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[show destroy]
-  before_action :authorization, only: %i[show destroy]
+  before_action :authorize_story, only: %i[show destroy]
 
   def index
     @stories = Story.of_current_and_followed_user(current_user).order('created_at desc')
@@ -36,7 +36,7 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
   end
 
-  def authorization
+  def authorize_story
     authorize @story
   end
 

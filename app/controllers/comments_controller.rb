@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
       respond_to :js
     else
       flash[:alert] = comment.errors.full_messages
+      redirect_to(request.referer || root_path)
     end
   end
 
@@ -21,6 +22,7 @@ class CommentsController < ApplicationController
       respond_to :js
     else
       flash[:alert] = @comment.errors.full_messages
+      redirect_to(request.referer || root_path)
     end
   end
 
