@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[destroy edit update]
-
-  def index
-    @comments = @post.comments.includes(:user).order('created_at desc')
-  end
+  before_action :set_comment, only: %i[edit destroy update]
+  before_action :authorization, only: %i[edit destroy update]
 
   def create
     comment = current_user.comments.build(comment_params)
     @post = comment.post
+    authorize @post, policy_class: CommentPolicy
     if comment.save
       respond_to :js
     else
-      flash[:alert] = 'Something went wrong ...'
+      flash[:alert] = comment.errors.full_messages
     end
   end
 
@@ -22,7 +20,7 @@ class CommentsController < ApplicationController
     if @comment.destroy
       respond_to :js
     else
-      flash[:alert] = 'Something went wrong ...'
+      flash[:alert] = @comment.errors.full_messages
     end
   end
 
@@ -32,7 +30,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       flash[:notice] = 'Comment updated!'
     else
-      flash[:alert] = 'Something went wrong ...'
+      flash[:alert] = @comment.errors.full_messages
     end
     redirect_to post_path(@comment.post)
   end
@@ -41,6 +39,9 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def authorization
     authorize @comment
   end
 

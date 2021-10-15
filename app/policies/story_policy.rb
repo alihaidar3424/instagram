@@ -7,19 +7,11 @@ class StoryPolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    true
-  end
-
-  def create?
-    user.present?
-  end
-
   def destroy?
     owner?
   end
 
   def show?
-    true
+    owner? || follower?
   end
 end

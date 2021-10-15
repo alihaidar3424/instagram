@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CommentPolicy < ApplicationPolicy
+class LikePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -12,14 +12,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    owner? || user == record.post.user
-  end
-
-  def edit?
-    owner?
-  end
-
-  def update?
     owner?
   end
 end

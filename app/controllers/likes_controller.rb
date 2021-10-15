@@ -4,20 +4,22 @@ class LikesController < ApplicationController
   def create
     @like = current_user.likes.build(like_params)
     @post = @like.post
+    authorize @post, policy_class: LikePolicy
     if @like.save
       respond_to :js
     else
-      flash[:alert] = 'Something went wrong ...'
+      flash[:alert] = @like.errors.full_messages
     end
   end
 
   def destroy
     @like = Like.find(params[:id])
+    authorize @like
     @post = @like.post
     if @like.destroy
       respond_to :js
     else
-      flash[:alert] = 'Something went wrong ...'
+      flash[:alert] = @like.errors.full_messages
     end
   end
 

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   validates :name, presence: true, length: { in: 3..50 }
   validates :bio, length: { maximum: 255 }
@@ -25,15 +25,25 @@ class User < ApplicationRecord
 
   enum account_type: { general: 0, secure: 1 }
 
-  scope :pending_users, ->(user) { where id: user.follower_relationships.pending.pluck('follower_id') }
-  scope :followed_users, ->(user) { where id: user.follower_relationships.followed.pluck('follower_id') }
+  scope :pending_users, ->(user) { where id: user.follower_relationships.pending.pluck(:follower_id) }
+  scope :followed_users, ->(user) { where id: user.follower_relationships.followed.pluck(:follower_id) }
   scope :following_users, lambda { |user1, user2|
                             where id: user1.following_relationships.followed
-                                           .pluck('following_id').include?(user2.id)
+                                           .pluck(:following_id).include?(user2.id)
                           }
-  scope :search, ->(term) { where('lower(name) LIKE ?', "%#{term.downcase}%") if term }
+  # scope :search, ->(term) { where('lower(name) LIKE ?', "%#{term.downcase}%") if term }
 
   def like_on_post(post)
     likes.where(post_id: post.id)
+  end
+
+  def of_follow_user(user, current_user)
+    current_user.following_relationships
+                .find_by(following_id: user.id)&.follow_status
+  end
+
+  def of_followed_user(user, current_user)
+    current_user.following_relationships
+                .followed.find_by(following_id: user.id).present?
   end
 end
