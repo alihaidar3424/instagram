@@ -16,7 +16,6 @@
 //= require bootstrap.min
 //= require bootstrap-sprockets
 //= require dropzone
-//= require toastr
 //= require turbolinks
 //= require jquery.easy-autocomplete.min
 //= require_tree .

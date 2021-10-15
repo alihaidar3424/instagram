@@ -15,7 +15,6 @@
 *= require easy-autocomplete.min
 *= require easy-autocomplete.themes.min
 *= require_self
-*= require toastr
 *= require dropzone/dropzone
  */
 
@@ -33,4 +32,9 @@
   background-color: $fa-white;
   font-size: 14px;
   color: $secondary;
+}
+
+#flash{
+  position: absolute;
+  top: 0px;
 }
