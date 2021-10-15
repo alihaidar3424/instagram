@@ -31,8 +31,6 @@ class User < ApplicationRecord
                             where id: user1.following_relationships.followed
                                            .pluck(:following_id).include?(user2.id)
                           }
-  # scope :search, ->(term) { where('lower(name) LIKE ?', "%#{term.downcase}%") if term }
-
   def like_on_post(post)
     likes.where(post_id: post.id)
   end

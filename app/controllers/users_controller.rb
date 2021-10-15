@@ -2,10 +2,6 @@
 
 class UsersController < ApplicationController
   before_action :force_json, only: :search
-  # def index
-  #   @users = User.ransack(params[:term]).result(distinct: true)
-  #   respond_to :js
-  # end
 
   def search
     @users = User.ransack(name_cont: params[:q]).result
