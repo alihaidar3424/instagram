@@ -22,6 +22,8 @@
     <div class='container'>
       <%= yield %>
     </div>
+    <%= render 'shared/footer' unless user_signed_in? %>
+
      <% if flash.any? %>
       <script type="text/javascript">
         <% flash.each do |key, value| %>

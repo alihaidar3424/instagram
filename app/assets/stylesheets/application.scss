@@ -17,24 +17,3 @@
 *= require_self
 *= require toastr
  */
-
- //variables
- $primary: #dbdbdb;
- $secondary: #262626;
- $solid-black: rgba(0,0,0,.0975);
- $solid-white: #e6e6e6;
- $f-white: #fff;
- $fa-white: #fafafa;
- $ef-white: #efefef;
-
-
- body {
-  background-color: $fa-white;
-  font-size: 14px;
-  color: $secondary;
-}
-
-#flash{
-  position: absolute;
-  top: 0px;
-}
