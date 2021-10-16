@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to :js
     else
-      flash[:alert] = comment.errors.full_messages.join(', ')
+      flash[:alert] = @comment.errors.full_messages.join(', ')
       redirect_to(request.referer || root_path)
     end
   end

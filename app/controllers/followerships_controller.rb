@@ -9,7 +9,7 @@ class FollowershipsController < ApplicationController
     if @follow.save
       flash[:notice] = 'Follow User'
     else
-      flash[:alert] = follow.errors.full_messages.join(', ')
+      flash[:alert] = @follow.errors.full_messages.join(', ')
     end
     redirect_to(request.referer || root_path)
   end
@@ -33,11 +33,11 @@ class FollowershipsController < ApplicationController
   end
 
   def reject
-    flash[:alert] = if @follow.destroy
-                      'Follow Request Rejected'
-                    else
-                      @follow.errors.full_messages(', ')
-                    end
+    if @follow.destroy
+      flash[:notice] = 'Follow Request Rejected'
+    else
+      flash[:alert] = @follow.errors.full_messages(', ')
+    end
     redirect_to(request.referer || root_path)
   end
 

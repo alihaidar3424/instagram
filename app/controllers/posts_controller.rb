@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     if @post.destroy
       flash[:notice] = 'Post deleted!'
     else
-      flash[:alert] = @post.errors.full_messages(', ')
+      flash[:alert] = @post.errors.full_messages.join(', ')
     end
     redirect_to posts_path
   end
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       flash[:notice] = 'Post updated!'
     else
-      flash[:alert] = @post.errors.full_messages(', ')
+      flash[:alert] = @post.errors.full_messages.join(', ')
     end
     redirect_to post_path(@post)
   end

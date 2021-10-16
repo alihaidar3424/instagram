@@ -31,9 +31,6 @@ class User < ApplicationRecord
                             where id: user1.following_relationships.followed
                                            .pluck(:following_id).include?(user2.id)
                           }
-  # def like_on_post(post)
-  #   likes.where(post_id: post.id)
-  # end
 
   def of_follow_user(user, current_user)
     current_user.following_relationships
