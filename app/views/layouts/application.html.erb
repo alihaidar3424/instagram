@@ -20,11 +20,8 @@
   <body>
     <%= render 'shared/navbar' if current_user %>
     <div class='container'>
-    <%# <div class= 'position-relative container'> %>
       <%= yield %>
-      <%# <%= render 'shared/flash_messages' %>
     </div>
-</div>
      <% if flash.any? %>
       <script type="text/javascript">
         <% flash.each do |key, value| %>
