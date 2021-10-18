@@ -1,3 +1,4 @@
+
 <div class="d-flex flex-column align-items-center mt-3">
   <div class="row post box col-xl-10 col-lg-11 col-xs-12">
     <div class="col-lg-8 col-md-7 px-0 d-flex post-show-img">
@@ -42,7 +43,7 @@
 
       <div class="row actions">
         <div id="like-icon-post-<%= @post.id.to_s %>">
-          <%= render "like_icon", {liked: current_user.like_on_post(@post), post: @post} %>
+          <%= render "like_icon", {liked: @post.likes.by_user(current_user), post: @post} %>
         </div>
       </div>
       <div id="like-text-post-<%= @post.id.to_s %>">

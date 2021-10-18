@@ -16,6 +16,15 @@
     </div>
 
     <%= render 'photos', {story: story} %>
+    <div class="card-body">
+      <div>
+        <span><strong><%= story.user_name %></strong></span>
+        <span><%= story.content %></span>
+      </div>
+      <%= link_to time_ago_in_words(story.created_at).upcase + ' AGO', story_path(story),
+        class: 'light-color post-time no-text-decoration' %>
+      <hr>
+    </div>
   </div>
 <% end %>
 

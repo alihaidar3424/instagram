@@ -1,0 +1,14 @@
+<% if notice.present? %>
+  <div class = 'row mt-4 text-dark ml-4' id = 'flash'>
+    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+      <%= notice%>
+    </div>
+  </div>
+<% end %>
+<% if alert.present? %>
+  <div class = 'row mt-4 text-dark ml-4' id = 'flash'>
+    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+      <%= alert%>
+    </div>
+  </div>
+<% end %>

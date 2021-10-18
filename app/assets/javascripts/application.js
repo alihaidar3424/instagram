@@ -15,8 +15,10 @@
 //= require activestorage
 //= require bootstrap.min
 //= require bootstrap-sprockets
-//= require dropzone
-//= require_tree .
+//= require popper
+//= require turbolinks
+//= require jquery.easy-autocomplete.min
 //= require toastr
+//= require_tree .
 
 

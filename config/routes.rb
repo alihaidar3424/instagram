@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   root 'posts#index'
+  get :search, to: 'users#search'
   devise_for :users,
              path: '',
              path_names: { sign_in: 'login', sign_out: 'logout', edit: 'profile', sign_up: 'registration' },
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     post :follow, to: 'followerships#create', on: :collection
     post :unfollow, to: 'followerships#destroy', on: :collection
     post :accept_request, to: 'followerships#update', on: :collection
+    post :reject_request, to: 'followerships#reject', on: :collection
     get :requests_pending, shallow: true
   end
 

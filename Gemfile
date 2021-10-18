@@ -36,15 +36,14 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'activestorage-validator'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.0.0'
-# gem 'bootstrap-sass', '~> 3.4.1'
 gem 'cloudinary'
 gem 'devise'
-gem 'dotenv-rails'
-gem 'dropzonejs-rails'
 gem 'jquery-rails'
 gem 'pundit'
+gem 'ransack'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'sprockets'
@@ -53,7 +52,6 @@ gem 'toastr-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'letter_opener'
   gem 'rubocop'
   gem 'rubocop-minitest' # or gem 'rubocop-rspec' depending on your test suite
   gem 'rubocop-performance'

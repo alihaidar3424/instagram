@@ -42,6 +42,10 @@ class ApplicationPolicy
     user.present? && user == record.user
   end
 
+  def follower?
+    User.following_users(user, record.user)
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

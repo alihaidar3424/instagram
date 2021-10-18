@@ -2,20 +2,19 @@
 
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[show destroy]
+  before_action :authorize_story, only: %i[show destroy]
 
   def index
     @stories = Story.of_current_and_followed_user(current_user).order('created_at desc')
     @story = Story.new
-    authorize @stories
   end
 
   def create
     story = current_user.stories.build(story_params)
-    authorize story
     if story.save
       flash[:notice] = 'Story Created!'
     else
-      flash[:alert] = 'Something wrong...'
+      flash[:alert] = story.errors.full_messages.join(', ')
     end
     redirect_to stories_path
   end
@@ -24,7 +23,7 @@ class StoriesController < ApplicationController
     if @story.destroy
       flash[:notice] = 'Story deleted!'
     else
-      flash[:alert] = 'Something went wrong ...'
+      flash[:alert] = @story.errors.full_messages.join(', ')
     end
     redirect_to stories_path
   end
@@ -35,10 +34,13 @@ class StoriesController < ApplicationController
 
   def set_story
     @story = Story.find(params[:id])
+  end
+
+  def authorize_story
     authorize @story
   end
 
   def story_params
-    params.require(:story).permit(images: [])
+    params.require(:story).permit(:content, images: [])
   end
 end
