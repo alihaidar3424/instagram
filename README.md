@@ -10,7 +10,7 @@ application up and running.
 
 Things you may want to cover:
 
-* Configurations: You need to add application credentials in credentials.rb as follow:
+* Configurations: You need to add application credentials in credentials.yml as follow:
 
   - api_key
   - api_secret
