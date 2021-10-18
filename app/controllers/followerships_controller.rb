@@ -36,7 +36,7 @@ class FollowershipsController < ApplicationController
     if @follow.destroy
       flash[:notice] = 'Follow Request Rejected'
     else
-      flash[:alert] = @follow.errors.full_messages(', ')
+      flash[:alert] = @follow.errors.full_messages.join(', ')
     end
     redirect_to(request.referer || root_path)
   end
