@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { in: 3..50 }
   validates :bio, length: { maximum: 255 }
 
-  validates :profile_pic
+  # validates :profile_pic
   # ,
   #           format: {
   #             with: /\.gif|jpg|jpeg|png/i,
