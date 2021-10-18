@@ -9,11 +9,12 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { in: 3..50 }
   validates :bio, length: { maximum: 255 }
 
-  validates :profile_pic,
-            format: {
-              with: /\.gif|jpg|jpeg|png/i,
-              message: 'must be a url for gif, jpg, jpe or png image.'
-            }
+  validates :profile_pic
+  # ,
+  #           format: {
+  #             with: /\.gif|jpg|jpeg|png/i,
+  #             message: 'must be a url for gif, jpg, jpe or png image.'
+  #           }
 
   has_one_attached :profile_pic
   has_many :posts, dependent: :destroy
