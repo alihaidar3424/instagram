@@ -6,10 +6,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  has_one_attached :profile_pic
+
   validates :name, presence: true, length: { in: 3..50 }
   validates :bio, length: { maximum: 255 }
+  validates :profile_pic, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..(5.megabytes) }
 
-  has_one_attached :profile_pic
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
